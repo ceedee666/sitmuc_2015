@@ -2,6 +2,9 @@
 1. Why functional programming?
 2. Why elixir?
 3. Pure functions
+4. ....
+5. ....
+
 
 
 # Why functional programming
