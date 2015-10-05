@@ -24,5 +24,3 @@ What else
 - Host custom code
 - Leverage PaaS offerings for custom solutions
 - Leverage IaaS for legacy solutions
-
-
