@@ -29,7 +29,7 @@
 
 
 #Basic Types
-``` elixir
+```
 # There are numbers
 3    # integer
 3.0  # float
@@ -50,14 +50,6 @@
 
 
 #Immutability
-<pre><code data-trim contenteditable>
-#include <stdio.h>
-int main(int argc, char const* argv[])
-{
-    puts("hello, world!");
-    return 0;
-}
-</pre></code>
 
 
 
