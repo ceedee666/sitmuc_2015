@@ -29,7 +29,7 @@
 
 
 #Basic Types
-```Elixir
+``` elixir
 # There are numbers
 3    # integer
 3.0  # float
