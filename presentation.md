@@ -179,12 +179,16 @@ Enum.map(users, get_element.(:last_name))
 * Example sum the items in a list*
 
 ``` Elixir
-list = [1,2,3,6,8,22]
-
-# Calculate the sum of items in a list
-sum_list = fn ([head|tail],acc) -> sum_list(tail, acc + head)
-              ([], acc)         -> acc 
-	   end  
+defmodule Sum
+  # Calculate the sum of items in a list
+  def sum_list([head|tail], acc) do
+    sum_list(tail, acc + head)
+  end
+  
+  def sum_list([], acc) do
+    acc
+  end  
+end
 ```
 
 
@@ -193,10 +197,12 @@ sum_list = fn ([head|tail],acc) -> sum_list(tail, acc + head)
 
 ## Tail call optimization
 
-* Fibonacci sequence [^1]
-  $$ F_{0} = 0, F_{1} = 1 $$
-  $$ F_{n} = F_{n-1} + F_{n-2}
-* Alternate definition:
+* Fibonacci sequence
+  * F_{0} = 0
+  * F_{1} = 1
+  * F_{n} = F_{n-1} + F_{n-2}
+* Alternative definition
+  > Fibonacci - A problem used to teach recursion in computer science
 
 ``` Elixir
 defmodule NaiveFib do 
@@ -219,8 +225,6 @@ defmodule Fib do
   end
 end
 ``` 
-
-[^1]: http://www.wolframalpha.com/input/?i=fibonacci+sequence
 
 
 
