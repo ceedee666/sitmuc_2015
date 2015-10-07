@@ -1,6 +1,6 @@
 # Agenda
 
-1. [Why functional programming? Why elixir?](#/2)
+1. [Why functional programming?](#/2)
 1. [Why elixir?](#/3)
 1. [Basic types & Operators](#/4)
 1. [Pattern matching](#/5)
@@ -175,16 +175,19 @@ Enum.map(users, get_element.(:last_name))
 ## Recursion vs. Loops
 
 * Due to immutability loops are expressed as recursion
-* Example sum the items in a list [^1]
+* Example sum the items in a list*
 
 ``` Elixir
 list = [1,2,3,6,8,22]
+
 # Calculate the sum of items in a list
 sum_list = fn ([head|tail],acc) -> sum_list(tail, acc + head)
-              ([], acc) -> acc 
+              ([], acc)         -> acc 
 	   end  
 ```
-[^1]: Usually this should be implemente using [Enum.reduce/2](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#reduce/2)
+
+
+*Usually this should be implemente using [Enum.reduce/2](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#reduce/2)
 
 
 ## Tail call optimization
