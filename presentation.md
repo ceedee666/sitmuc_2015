@@ -33,7 +33,6 @@
 
 
 
-
 #Basic Types & Operators
 
 
@@ -191,18 +190,18 @@ defmodule Sum
 end
 ```
 
-
 *Usually this should be implemente using [Enum.reduce/2](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#reduce/2)
 
 
 ## Tail call optimization
 
 * Fibonacci sequence
-  * F_{0} = 0
-  * F_{1} = 1
-  * F_{n} = F_{n-1} + F_{n-2}
+  * F(0) = 0
+  * F(1) = 1
+  * F(n) = F(n-1) + F(n-2)
 * Alternative definition
   > Fibonacci - A problem used to teach recursion in computer science
+
 
 ``` Elixir
 defmodule NaiveFib do 
