@@ -215,12 +215,16 @@ defmodule NaiveFib do
 end
 
 defmodule Fib do
-  def fib(n) when is_integer(n) and n > 1 do
-    fibn(n)
+  def fib(n) when is_integer(n) and n > 0 do
+    fibn(n, 1, 0)
+  end
+
+  defp fibn(0, _, result) do
+		result
   end
   
- defp fibn(n, current \\ 0, next \\ 1) do 
-    fib(b, a+b, n-1) 
+  defp fibn(n, next, result) do 
+    fibn(n-1, next + result, next) 
   end
 end
 ``` 
