@@ -18,6 +18,7 @@
 - Concurrency
 
 
+
 #Why elixir?
 
 - Runs on the Erlang VM
@@ -95,7 +96,7 @@ x = 1
 ##Pattern matching
 
 ``` Elixir
-# a  complex matches
+# a complex match
 {a, b, c} = {:hello, "world", 42}
 
 # this match fails
@@ -114,13 +115,14 @@ x = 1
 
 #Functions
  
-* Functions are first-class citizens 
 * Two types of functions
   * Anonymous functions
   * Named functions
-* Can be assigned to variables
-* Can be function parameters
 
+* Functions are first-class citizens 
+  * Can be assigned to variables
+  * Can be function parameters
+  * Can be return value of other functions
 
 ##Anonymous & named functions
 
@@ -131,15 +133,34 @@ s = fn(x) -> x * x end
 
 # Named function
 # Note that function params are patterns
-def fib(0) do 0 end
-def fib(1) do 1 end
-def fib(n) do fib(n-1) + fib(n-2) end
+defmodule SitMuc do
+  def fib(0) do 0 end
+  def fib(1) do 1 end
+  def fib(n) do fib(n-1) + fib(n-2) end
+end
 ```
-
 
 
 ##Higher order functions
 
+``` Elixir
+# Create a list with some data 
+user1 = %{:first_name => "Christian", :last_name => "Drumm"}
+user2 = %{:first_name => "Martin", :last_name => "Steinberg"}
+user3 = %{:first_name => "Gregor", :last_name => "Wolf"}
+users = [user1, user2, user3]
+
+# Function that fetches an entry from a map
+get_element = fn(key_word) ->
+  fn(user) ->
+    user[key_word]
+  end
+end
+
+# Apply the function to the list
+Enum.map(users, get_element.(:first_name))
+Enum.map(users, get_element.(:last_name))
+```
 
 
 #Recursion
