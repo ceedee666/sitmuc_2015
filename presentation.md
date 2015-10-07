@@ -1,12 +1,13 @@
 # Agenda
 
-1. Why functional programming?
-1. Why elixir?
-1. Basic types & Operators
-1. Pattern matching
-1. Functions
-1. Recursion
-1. Concurrency
+1. [Why functional programming? Why elixir?](#/2)
+1. [Basic types & Operators](#/3)
+1. [Pattern matching](#/4)
+1. [Functions](#/5)
+1. [Recursion](#/6)
+1. [Concurrency](#/7)
+1. 
+1. [References](#/8)
 
 
 
@@ -53,6 +54,9 @@
 
 # Tuples that are stored contiguously in memory.
 {:ok,"hello",1} # tuple
+
+# Maps
+%{:first_name => "Christian", :last_name => "Drumm"}
 ```
 
 
@@ -164,3 +168,88 @@ Enum.map(users, get_element.(:last_name))
 
 
 #Recursion
+
+
+## Recursion vs. Loops
+
+* Due to immutability loops are expressed as recursion
+* Example sum the items in a list [^1]
+
+``` Elixir
+list = [1,2,3,6,8,22]
+# Calculate the sum of items in a list
+sum_list = fn ([head|tail],acc) -> sum_list(tail, acc + head)
+              ([], acc) -> acc 
+	   end  
+```
+[^1]: Usually this should be implemente using [Enum.reduce/2](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#reduce/2)
+
+
+## Tail call optimization
+
+* Fibonacci sequence [^1]
+  $$ F_{0} = 0, F_{1} = 1 $$
+  $$ F_{n} = F_{n-1} + F_{n-2}
+* Alternate definition:
+
+``` Elixir
+defmodule NaiveFib do 
+  def fib(0) do 0 end
+  def fib(1) do 1 end
+  
+  def fib(n) do 
+    # This invocation is not tail call optimized
+    fib(n-1) + fib(n-2) 
+  end
+end
+
+defmodule Fib do
+  def fib(n) when is_integer(n) and n > 1 do
+    fibn(n)
+  end
+  
+ defp fibn(n, current \\ 0, next \\ 1) do 
+    fib(b, a+b, n-1) 
+  end
+end
+``` 
+
+[^1]: http://www.wolframalpha.com/input/?i=fibonacci+sequence
+
+
+
+#Concurrency 
+
+``` Elixir
+defmodule Router do
+  def route do
+    receive do
+      {[ first | tail ], msg} -> 
+        #IO.puts "#{inspect self} received: #{msg}!"
+        #IO.puts "routing to next #{inspect first}"
+        send first, {tail, msg}
+        route
+
+      {[], msg } -> 
+        IO.puts "#{inspect self} Huuray, Got the delivery: #{msg}!"
+    end
+  end
+end
+
+defmodule Messenger do
+  def deliver(message) do
+		[router|routers] = Enum.map(1..10, &(spawn(Router, :route, [])
+
+    send(router { routers , message })
+  end
+end
+```
+
+
+#References
+
+* [Functional thinking: Why functional programming is on the rise](http://www.ibm.com/developerworks/library/j-ft20/) 
+* [Elixir](http://elixir-lang.org/)
+* [Elixir Cheat Sheet](http://media.pragprog.com/titles/elixir/ElixirCheat.pdf)
+* [Try Elixir online](http://elixirplayground.com/)
+* [ExTwitter](https://github.com/parroty/extwitter)
