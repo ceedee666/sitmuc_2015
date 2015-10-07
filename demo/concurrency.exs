@@ -4,9 +4,8 @@ defmodule Router do
       {[ first | tail ], msg} -> 
         #IO.puts "#{inspect self} received: #{msg}!"
         #IO.puts "routing to next #{inspect first}"
-        send first, {tail, msg}
-        route
-
+        send(first, {tail, msg})
+        
       {[], msg } -> 
         IO.puts "#{inspect self} Huuray, Got the delivery: #{msg}!"
     end
@@ -14,9 +13,9 @@ defmodule Router do
 end
 
 defmodule Messenger do
-  def deliver(message) do
-		[router|routers] = Enum.map(1..10, &(spawn(Router, :route, [])
+  def deliver(message, processes) do
+		[router|routers] = Enum.map(1..processes, fn(_) -> spawn(Router, :route, []) end)
 
-    send(router { routers , message })
+    send(router, {routers , message})
   end
 end
