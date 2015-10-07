@@ -1,13 +1,13 @@
 # Agenda
 
 1. [Why functional programming? Why elixir?](#/2)
-1. [Basic types & Operators](#/3)
-1. [Pattern matching](#/4)
-1. [Functions](#/5)
-1. [Recursion](#/6)
-1. [Concurrency](#/7)
-1. 
-1. [References](#/8)
+1. [Why elixir?](#/3)
+1. [Basic types & Operators](#/4)
+1. [Pattern matching](#/5)
+1. [Functions](#/6)
+1. [Recursion](#/7)
+1. [Concurrency](#/8)
+1. [References](#/9)
 
 
 
@@ -129,6 +129,7 @@ x = 1
   * Can be function parameters
   * Can be return value of other functions
 
+
 ##Anonymous & named functions
 
 ``` Elixir
@@ -166,6 +167,7 @@ end
 Enum.map(users, get_element.(:first_name))
 Enum.map(users, get_element.(:last_name))
 ```
+
 
 
 #Recursion
@@ -236,7 +238,10 @@ defmodule Router do
     end
   end
 end
+```
 
+
+``` Elixir
 defmodule Messenger do
   def deliver(message) do
 		[router|routers] = Enum.map(1..10, &(spawn(Router, :route, [])
@@ -245,6 +250,7 @@ defmodule Messenger do
   end
 end
 ```
+
 
 
 #References
