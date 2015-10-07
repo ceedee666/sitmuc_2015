@@ -190,18 +190,18 @@ defmodule Sum
 end
 ```
 
-
 *Usually this should be implemente using [Enum.reduce/2](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#reduce/2)
 
 
 ## Tail call optimization
 
 * Fibonacci sequence
-  * F_{0} = 0
-  * F_{1} = 1
-  * F_{n} = F_{n-1} + F_{n-2}
+  * F(0) = 0
+  * F(1) = 1
+  * F(n) = F(n-1) + F(n-2)
 * Alternative definition
   > Fibonacci - A problem used to teach recursion in computer science
+
 
 ``` Elixir
 defmodule NaiveFib do 
@@ -215,12 +215,16 @@ defmodule NaiveFib do
 end
 
 defmodule Fib do
-  def fib(n) when is_integer(n) and n > 1 do
-    fibn(n)
+  def fib(n) when is_integer(n) and n > 0 do
+    fibn(n, 1, 0)
+  end
+
+  defp fibn(0, _, result) do
+		result
   end
   
- defp fibn(n, current \\ 0, next \\ 1) do 
-    fib(b, a+b, n-1) 
+  defp fibn(n, next, result) do 
+    fibn(n-1, next + result, next) 
   end
 end
 ``` 
