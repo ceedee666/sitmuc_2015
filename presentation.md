@@ -254,10 +254,10 @@ end
 
 ``` Elixir
 defmodule Messenger do
-  def deliver(message) do
-    [router|routers] = Enum.map(1..10, &(spawn(Router, :route, [])))
+  def deliver(message, processes) do
+    [router|routers] = Enum.map(1..processes, fn(_) -> spawn(Router, :route, []) end)
 
-    send(router { routers , message })
+    send(router, {routers , message})
   end
 end
 ```
