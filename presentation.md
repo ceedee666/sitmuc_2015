@@ -7,7 +7,6 @@
 1. [Functions](#/6)
 1. [Recursion](#/7)
 1. [Concurrency](#/8)
-1. [References](#/9)
 
 
 
