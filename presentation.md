@@ -201,6 +201,8 @@ end
   > Fibonacci - A problem used to teach recursion in computer science
 
 
+### Naive implementation
+
 ``` Elixir
 defmodule NaiveFib do 
   def fib(0) do 0 end
@@ -212,6 +214,8 @@ defmodule NaiveFib do
 end
 ```
 
+
+### Tail call optimized  implementation
 
 ``` Elixir
 defmodule Fib do
@@ -233,6 +237,14 @@ end
 
 #Concurrency 
 
+* Erlang/Elixir uses the [Actor Concurrency Model](http://en.wikipedia.org/wiki/Actor_model)
+  * Leightweight processes 
+  * Message passing
+  * Shared nothing
+
+
+## A simple process
+
 ``` Elixir
 defmodule Router do
   def route do
@@ -250,6 +262,8 @@ defmodule Router do
 end
 ```
 
+
+## Communication between processes
 
 ``` Elixir
 defmodule Messenger do
