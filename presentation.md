@@ -137,10 +137,9 @@ s = fn(x) -> x * x end
 
 # Named function
 # Note that function params are patterns
-defmodule SitMuc do
-  def fib(0) do 0 end
-  def fib(1) do 1 end
-  def fib(n) do fib(n-1) + fib(n-2) end
+defmodule SitMuc1 do
+  def factorial(0) do 1 end
+  def factorial(n) do n * factorial(n-1) end
 end
 ```
 
